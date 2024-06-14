@@ -1,16 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    { id: 1, title: "Pulp Fiction", image: "https://fakeimg.pl/150x220?text=Pup+Fiction", director:"Quentin Tarantino" },
-    { id: 2, title: "The Shawshank Redemption", image: "https://fakeimg.pl/150x220?text=The+Shawshank+Redemption", director:"Frank Darabont" },
-    { id: 3, title: "The Godfather", image: "https://fakeimg.pl/150x220?text=The+Godfather", director:"Francis Ford Coppola" },
-    { id: 4, title: "The Dark Knight", image: "https://fakeimg.pl/150x220?text=The+Dark+Knight", director:"Christopher Nolan" },
-    { id: 5, title: "12 Angry Men", image: "https://fakeimg.pl/150x220?text=12+Angry+Men", director:"Sidney Lumet" }
-  ]);
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  useEffect(() => {
+    fetch("https://ramtin-movies-flix-1cd0d9c183b1.herokuapp.com/movies")
+    .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((doc) => {
+          return {
+            id: doc._id.$oid,
+            title: doc.title,
+            genre: {
+              name: doc.genre.name,
+              description: doc.genre.description,
+            },
+            director: {
+              name: doc.director.name,
+              nationality: doc.director.nationality,
+              bio: doc.director.bio,
+              birthDate: doc.director.birthDate,
+            },
+            rating: doc.rating,
+            description: doc.description,
+            additionalAttributes: {
+              runtime: doc.additionalAttributes.runtime,
+              mainActors: doc.additionalAttributes.mainActors,
+            },
+            releaseYear: doc.releaseYear,
+          };
+        });
+
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   if (selectedMovie) {
     return <MovieView movie={selectedMovie} onBackClick={() => {setSelectedMovie(null)}}/>;
