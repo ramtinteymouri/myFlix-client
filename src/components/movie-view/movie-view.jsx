@@ -1,6 +1,11 @@
 export const MovieView = ({ movie, onBackClick }) => {
+  const placeholderImage = 'https://placehold.co/259x384';
+  const movieImage = placeholderImage;
     return (
       <div>
+      <div>
+        <img className="W-100" src={movieImage} />
+      </div>
        <div>
         <span>Title: </span>
         <span>{movie.title}</span>

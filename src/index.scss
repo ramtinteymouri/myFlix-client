@@ -1,5 +1,15 @@
 $color: steelblue;
+$primary: goldenrod;
+$body-bg: mintcream;
 
 .my-flix {
   color: $color;
 }
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$theme-colors: (
+  "primary": $primary,
+);
+
+@import "~bootstrap/scss/bootstrap";
