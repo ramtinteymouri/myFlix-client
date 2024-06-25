@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 export const MovieCard = ({movie, onMovieClick}) => {
+  const placeholderImage = 'https://placehold.co/2592x3840';
+  const movieImage = placeholderImage;
   return (
     <Card className="h-100" onClick={() => onMovieClick(movie)}>
+      <Card.Img variant="top" src={movieImage} alt={movie.title} />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>Genre: {movie.genre.name}</Card.Text>
