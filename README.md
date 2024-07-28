@@ -12,6 +12,10 @@ The project contains the following files:
 - `components/main-view/main-view.jsx`: Contains the `MainView` component, which displays the list of movies and handles the selection of a movie.
 - `components/movie-card/movie-card.jsx`: Contains the `MovieCard` component, which represents each movie in the list.
 - `components/movie-view/movie-view.jsx`: Contains the `MovieView` component, which displays the details of a selected movie.
+- `components/login-view/login-view.jsx`: Contains the `LoginView` component, which handles user login.
+- `components/signup-view/signup-view.jsx`: Contains the `SignupView` component, which handles user registration.
+- `components/navigation-bar/navigation-bar.jsx`: Contains the `NavigationBar` component, which handles navigation within the app.
+- `components/profile-view/profile-view.jsx`: Contains the `ProfileView` component, which displays the user's profile information.
 
 ## Installation
 
@@ -57,3 +61,27 @@ This file contains the `MovieCard` component, which is responsible for displayin
 ### movie-view.jsx
 
 This file contains the `MovieView` component, which is responsible for displaying the details of a selected movie, including the movie's image, title, and director.
+
+### login-view.jsx
+
+This file contains the `LoginView` component, which handles user login. It allows users to enter their username and password and submit them to the server for authentication.
+
+### signup-view.jsx
+
+This file contains the `SignupView` component, which handles user registration. It allows new users to create an account by providing their username, password, and email.
+
+### navigation-bar.jsx
+
+This file contains the `NavigationBar` component, which provides navigation links to different parts of the application, such as the movie list, profile view, login, and signup pages.
+
+### profile-view.jsx
+
+This file contains the `ProfileView` component, which displays the user's profile information, including their username, email, first name, last name, birthday, and favorite movies.
+
+## Contribution
+
+Feel free to contribute to the project by submitting a pull request. Please make sure to follow the code style and include tests for any new functionality.
+
+## License
+
+This project is licensed under the MIT License.
