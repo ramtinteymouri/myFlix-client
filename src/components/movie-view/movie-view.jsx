@@ -1,10 +1,19 @@
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-export const MovieView = ({ movies}) => {
+import { useSelector } from "react-redux"; // Import useSelector
+
+export const MovieView = () => {
+  const movies = useSelector((state) => state.movies.list); // Get movies from Redux store
   const placeholderImage = 'https://placehold.co/259x384';
   const movieImage = placeholderImage;
   const { movieId } = useParams();
-  const movie = movies.find((m) => m.id === movieId);
+
+  const movie = movies.find((m) => m.id === movieId); // Find the movie by ID
+
+  // Ensure movie is found before rendering
+  if (!movie) {
+    return <div>Movie not found</div>;
+  }
     return (
       <div>
       <div>

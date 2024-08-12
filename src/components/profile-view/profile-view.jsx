@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/reducers/user";
 
 export const ProfileView = () => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const token = localStorage.getItem("token");
-  const username = localStorage.getItem("username");
+  const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!token) {
@@ -15,7 +17,7 @@ export const ProfileView = () => {
       return;
     }
 
-    fetch(`https://ramtin-movies-flix-1cd0d9c183b1.herokuapp.com/users/${username}`, {
+    fetch(`https://ramtin-movies-flix-1cd0d9c183b1.herokuapp.com/users/${user.username}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
     })
@@ -36,14 +38,14 @@ export const ProfileView = () => {
           lastName: data.lastName, 
           favoriteMovies: data.favoriteMovies,
         };
-        setUser(userFromApi);
+        dispatch(setUser({ user: userFromApi, token }));
         setLoading(false);
       })
       .catch((error) => {
         setError(error.message);
         setLoading(false);
       });
-  }, [token]);
+  }, [token, user, dispatch]);
 
   if (loading) {
     return (
